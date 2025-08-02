@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
 use App\Models\Task;
@@ -10,7 +11,7 @@ Route::get('/', function () {
 });
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'is_user'])->group(function () {
     //--------------------------------------TASK--------------------------------------//
     Route::get('/dashboard', [TaskController::class, 'index'])->name('dashboard');
     Route::get('/create-task', [TaskController::class, 'create'])->name('task.create');
@@ -19,6 +20,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'is_admin'])->group(function () {
+//    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('admin/dashboard', function () {
+        return 'admin mode';
+    })->name('admin.dashboard');
 });
 
 require __DIR__.'/auth.php';
