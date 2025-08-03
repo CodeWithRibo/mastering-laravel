@@ -10,3 +10,10 @@
     - Learned the middleware vs guarded and who is the best to use.
     - Learned Customized own middleware for route protection
     - Learned Implemented Role-Based Access Control (RBAC) using middleware
+
+ Day 2 Progress
+ 
+    - Learned Types of Middleware Global and Route Middleware
+    - Learned some route technique like prefix and name
+
+
