@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\LogRequest;
+use App\Http\Middleware\UpdateLastActivity;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -12,9 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'is_admin' => App\Http\Middleware\isAdmin::class,
-            'is_user' => App\Http\Middleware\isUser::class,
+            'is_admin' => App\Http\Middleware\IsAdmin::class,
+            'is_user' => App\Http\Middleware\IsUser::class,
         ]);
+        $middleware->append(LogRequest::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

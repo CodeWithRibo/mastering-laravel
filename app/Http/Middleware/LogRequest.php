@@ -4,10 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class isAdmin
+class LogRequest
 {
     /**
      * Handle an incoming request.
@@ -16,9 +15,9 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-       if(Auth::check() && Auth::user()->role === 'admin'){
-           return $next($request);
-       }
-       abort(403);
+        $response =  $next($request);
+        \Log::info('Request received: ' . $request->method() . ' ' . $request->path() . ' ' . now());
+
+        return $response;
     }
 }
