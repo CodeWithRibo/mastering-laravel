@@ -22,11 +22,20 @@ Route::middleware(['auth', 'is_user'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'is_admin'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
 //    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('admin/dashboard', function () {
-        return 'admin mode';
+    Route::get('dashboard', function () {
+        return auth()->check();
     })->name('admin.dashboard');
+
+    Route::get('about', function () {
+        return auth()->check();
+    })->name('admin.dashboard');
+
+    Route::get('contact', function () {
+        return auth()->check();
+    })->name('admin.dashboard');
+
 });
 
 require __DIR__.'/auth.php';

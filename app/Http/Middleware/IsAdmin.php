@@ -5,9 +5,10 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class isUser
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,9 +17,11 @@ class isUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role === 'user') {
-            return $next($request);
-        }
-        abort(403);
+        $response = $next($request);
+
+       if(Auth::check() && Auth::user()->role === 'admin'){
+           return $response;
+       }
+       abort(403);
     }
 }
