@@ -27,15 +27,6 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('dashboard', function () {
         return auth()->check();
     })->name('admin.dashboard');
-
-    Route::get('about', function () {
-        return auth()->check();
-    })->name('admin.dashboard');
-
-    Route::get('contact', function () {
-        return auth()->check();
-    })->name('admin.dashboard');
-
 });
 
 require __DIR__.'/auth.php';

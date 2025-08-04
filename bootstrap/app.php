@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Middleware\LogRequest;
-use App\Http\Middleware\UpdateLastActivity;
+use App\Http\Middleware\RemoveStripTags;
+use App\Http\Middleware\StripTagsFromIncomingRequest;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -17,7 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'is_admin' => App\Http\Middleware\IsAdmin::class,
             'is_user' => App\Http\Middleware\IsUser::class,
         ]);
-        $middleware->append(LogRequest::class);
+        $middleware->append([
+            LogRequest::class,
+            StripTagsFromIncomingRequest::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
