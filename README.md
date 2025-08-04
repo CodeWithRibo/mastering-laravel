@@ -16,4 +16,8 @@
     - Learned Types of Middleware Global and Route Middleware
     - Learned some route technique like prefix and name
 
+ Day 3 Progress
+ 
+    - Learned Sanization using TransformRequest Middleware, removed html markup & php tags.
+
 
