@@ -18,6 +18,7 @@
 
  Day 3 Progress
  
-    - Learned Sanization using TransformRequest Middleware, removed html markup & php tags.
-
+    - Learned Sanization using TransformRequest Middleware, removed html markup & php tags.]
+    - Learned Group Middleware
+    
 
