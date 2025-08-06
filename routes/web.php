@@ -13,20 +13,27 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'is_user'])->group(function () {
     //--------------------------------------TASK--------------------------------------//
-    Route::get('/dashboard', [TaskController::class, 'index'])->name('dashboard');
-    Route::get('/create-task', [TaskController::class, 'create'])->name('task.create');
-    Route::post('/store-task', [TaskController::class, 'store'])->name('task.store');
+    Route::controller(TaskController::class)->group(function () {
+        Route::get('/dashboard', 'index')->name('dashboard');
+        Route::get('/create-task', 'create')->name('task.create');
+        Route::post('/store-task', 'store')->name('task.store');
+    });
     //--------------------------------------PROFILE--------------------------------------//
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::controller(ProfileController::class)->group(function (){
+        Route::get('/profile','edit')->name('profile.edit');
+        Route::patch('/profile', 'update')->name('profile.update');
+        Route::delete('/profile', 'destroy')->name('profile.destroy');
+    });
 });
 
 Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
-//    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('dashboard', function () {
-        return auth()->check();
-    })->name('admin.dashboard');
+    Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('about/{id}/profile', function (string $id) {
+        return 'This is about page';
+    })->name('admin.about');
+
+//    $url = route('admin.about', ['id' => 1, 'photo' => 'yes']);
+//    dd($url);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
