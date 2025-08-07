@@ -1,7 +1,7 @@
 | **Phase**  | **Focus**                              | **Livewire Role**                                        |
 | ---------- | -------------------------------------- | -------------------------------------------------------- |
-| Days 1–5   | Auth, Middleware, Route                | Use Blade views (Breeze default)                         |
-| Days 6–10  | Authorization, Policies, Relationships | Use Blade views (Breeze default)                         |
+| Days 1–4   | Auth, Middleware, Route                | Use Blade views (Breeze default)                         |
+| Days 5–10  | Authorization, Policies, Relationships | Use Blade views (Breeze default)                         |
 | Days 11–15 | Dashboard, Filtering, Dynamic UI       | Use Livewire for task filters, modals, real-time updates |
 
 
@@ -24,6 +24,11 @@
 Day 4 Progress
  
     - Learned Route Group Controller
+
+Day 5 Progress 
+ 
+    - Authorization
     
     
+
 
