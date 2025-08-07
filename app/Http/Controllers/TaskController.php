@@ -15,8 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $query = Task::query();
-        $tasks = $query->orderBy('created_at', 'DESC')->paginate(10);
+        $relationship = auth()->user()->tasks();
+        $tasks = $relationship->orderBy('created_at', 'DESC')->paginate(10);
         return view('dashboard', compact('tasks'));
     }
 
@@ -34,7 +34,10 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         $validated = $request->validated();
-        Task::create($validated);
+        Task::create([
+            'user_id' => auth()->id(),
+            ...$validated
+        ]);
         return redirect()->route('dashboard');
     }
 
@@ -43,7 +46,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return view('task.view', compact('task'));
     }
 
     /**

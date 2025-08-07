@@ -17,6 +17,7 @@ Route::middleware(['auth', 'is_user'])->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
         Route::get('/create-task', 'create')->name('task.create');
         Route::post('/store-task', 'store')->name('task.store');
+        Route::get('/store-task/{task}', 'show')->name('task.show');
     });
     //--------------------------------------PROFILE--------------------------------------//
     Route::controller(ProfileController::class)->group(function (){

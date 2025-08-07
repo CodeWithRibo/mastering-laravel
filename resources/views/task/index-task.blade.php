@@ -9,6 +9,7 @@
                 <thead class=" uppercase text-gray-600">
                 <tr>
                     <th class="px-4 py-3">#</th>
+                    <th class="px-4 py-3">{{__('User ID')}}</th>
                     <th class="px-4 py-3">{{__('Title')}}</th>
                     <th class="px-4 py-3">{{__('Description')}}</th>
                     <th class="px-4 py-3">{{__('Due Date')}}</th>
@@ -20,6 +21,7 @@
                 @forelse($tasks as $task)
                     <tr class="border-t border-gray-200 hover:bg-gray-50">
                         <td class="px-4 py-3">{{$task->id}}</td>
+                        <td class="px-4 py-3">{{$task->user_id}}</td>
                         <td class="px-4 py-3">{{$task->title}}</td>
                         <td class="px-4 py-3">{{$task->description}}</td>
                         <td class="px-4 py-3">{{$task->due_date}}</td>
@@ -48,8 +50,10 @@
                             @endswitch
                         </td>
                         <td class="px-4 py-3 flex items-center gap-4">
-                        <x-danger-button>Delete</x-danger-button>
-                        <button class="btn btn-info text-white rounded-sm px-5">Edit</button>
+{{--                        <x-danger-button>Delete</x-danger-button>--}}
+                        <x-nav-link href="{{route('task.show', $task->id)}}">
+                            <button class="btn btn-info text-white rounded-sm px-5">View</button>
+                        </x-nav-link>
                         </td>
                         @empty
                             <td colspan="10">NO TASK LIST</td>
