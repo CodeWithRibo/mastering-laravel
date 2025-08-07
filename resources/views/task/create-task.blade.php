@@ -9,7 +9,6 @@
         <form action="{{route('task.store', auth()->id())}}" method="POST">
             @csrf
             <div class="flex w-full items-center flex-col justify-center max-w-7xl ">
-                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                 <x-input-label>Title</x-input-label>
                 <x-text-input class="w-full" type="text" name="title" placeholder="Enter Title"></x-text-input>
                 <x-input-error class="mt-2" :messages="$errors->get('title')" />
