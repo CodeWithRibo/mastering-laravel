@@ -28,6 +28,7 @@ Day 4 Progress
 Day 5 Progress 
  
     - Authorization
+    - Fixed relationship between table using user_id
     
     
 
