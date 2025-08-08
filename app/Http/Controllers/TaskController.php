@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class TaskController extends Controller
@@ -46,6 +47,10 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+        if (! Gate::allows('view-user-task', $task)){
+            abort(403, 'You are not authorized to access the other user task');
+        }
+
         return view('task.view', compact('task'));
     }
 
