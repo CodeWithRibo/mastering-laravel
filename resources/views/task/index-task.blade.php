@@ -51,9 +51,11 @@
                         </td>
                         <td class="px-4 py-3 flex items-center gap-4">
 {{--                        <x-danger-button>Delete</x-danger-button>--}}
-                        <x-nav-link href="{{route('task.show', $task->id)}}">
-                            <button class="btn btn-info text-white rounded-sm px-5">View</button>
-                        </x-nav-link>
+                           @can('view-user-task', $task)
+                                <x-nav-link href="{{route('task.show', $task->id)}}">
+                                    <button class="btn btn-info text-white rounded-sm px-5">View</button>
+                                </x-nav-link>
+                            @endcan
                         </td>
                         @empty
                             <td colspan="10">NO TASK LIST</td>
