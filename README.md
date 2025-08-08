@@ -30,6 +30,10 @@ Day 5 Progress
     - Authorization
     - Fixed relationship between table using user_id
     
+Day 6 Progress 
+ 
+    - Learned Authorizing action
+    - Learned Gate Response
     
 
 
