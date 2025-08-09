@@ -31,9 +31,17 @@ Day 5 Progress
     - Fixed relationship between table using user_id
     
 Day 6 Progress 
- 
+    
+    - Learned Writing Gates
     - Learned Authorizing action
     - Learned Gate Response
+
+Day 7 Progress 
+ 
+    - Learned Writing Policies
+    - Learned Policies Response
+    - Learned deep dive difference between policy and gates 
+    - Learned update POST method isn't safe on authorization 
     
 
 
