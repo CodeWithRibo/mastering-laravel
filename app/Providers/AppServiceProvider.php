@@ -22,8 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-         Gate::define('view-user-task', function (User $user, Task $task){
-            return $user->id === $task->user_id;
-        });
+
     }
 }
