@@ -47,10 +47,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        if (! Gate::allows('view-user-task', $task)){
-            abort(403, 'You are not authorized to access the other user task');
-        }
-
+//        Gate::authorize('view-user-task', $task);
         return view('task.view', compact('task'));
     }
 
@@ -59,7 +56,8 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        Gate::authorize('edit', $task);
+        return view('task.edit', compact('task'));
     }
 
     /**
@@ -67,7 +65,12 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        Gate::authorize('update', $task);
+
+        $task->update($request->validated());
+        $task->save();
+
+        return redirect()->route('dashboard');
     }
 
     /**

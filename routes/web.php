@@ -18,6 +18,8 @@ Route::middleware(['auth', 'is_user'])->group(function () {
         Route::get('/create-task', 'create')->name('task.create');
         Route::post('/store-task', 'store')->name('task.store');
         Route::get('/store-task/{task}', 'show')->name('task.show');
+        Route::get('/edit-task/{task}', 'edit')->name('task.edit');
+        Route::put('/update-task/{task}', 'update')->name('task.update');
     });
     //--------------------------------------PROFILE--------------------------------------//
     Route::controller(ProfileController::class)->group(function (){
